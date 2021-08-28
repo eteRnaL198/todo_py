@@ -6,6 +6,8 @@ git fetch
 git merge
 git checkout shinnosuke
 git merge master
+git fetch
+git merge
 
 【作業終了時】
 git add .
@@ -14,4 +16,3 @@ git push
 
 【プルリクエスト】
 レビューしてもらったら マージ
-
