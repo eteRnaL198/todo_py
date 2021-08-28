@@ -1,0 +1,17 @@
+github コマンド
+
+【作業開始時】
+git checkout master
+git fetch
+git merge
+git checkout shinnosuke
+git merge master
+
+【作業終了時】
+git add .
+git commit -m "message"
+git push
+
+【プルリクエスト】
+レビューしてもらったら マージ
+
