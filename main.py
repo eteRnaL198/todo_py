@@ -2,17 +2,17 @@ import tkinter as tk
 
 class App:
     def __init__(self):
-        # ウィンドウの初期化
         self.master = tk.Tk()
         self.master.title('TODOアプリ')
         self.master.geometry('400x300')
 
-        #TODO入力エリアの作成
-        self.input_area = InputArea(self.master)
+        self.tasks = ['foo', 'bar', 'hoge']
+        self.input_area = InputArea(self.master, self.tasks)
         self.input_area.pack()
+        self.task_list = TaskList(self.master, self.tasks)
+        self.task_list.pack()
 
     def mainloop(self):
-        #masterに処理を委譲
         self.master.mainloop()
 
 class InputArea(tk.Frame):
@@ -21,24 +21,32 @@ class InputArea(tk.Frame):
     ユーザーの入力の処理
     TODOテキストを追加ボタンで追加
     """
-    def __init__(self, master):
+    def __init__(self, master, tasks):
         super(InputArea, self).__init__(master)
 
-        #ラベルの作成
+        self.tasks = tasks
+
         self.label = tk.Label(self, text='TODO')
         self.label.pack(side='left')
 
-        #入力行の作成
         self.entry = tk.Entry(self)
         self.entry.pack(side='left')
 
-        #追加ボタンの作成
-        self.add_btn = tk.Button(self, text='追加', command=self._click_add_btn)
+        self.add_btn = tk.Button(self, text='追加', command=self._add_task)
         self.add_btn.pack(side='left')
 
-    def _click_add_btn(self):
-        #DEBUG: 入力値の表示
-        print('add', self.entry.get())
+    def _add_task(self):
+        # メソッド名変えました
+        self.tasks.append(self.entry.get())
+        print(self.tasks)
+        # print('add', self.entry.get())
+
+class TaskList(tk.Frame):
+    def __init__(self, master, tasks):
+        super(TaskList, self).__init__(master)
+        for task in tasks:
+            self.check_btn = tk.Checkbutton(self, text=task)
+            self.check_btn.pack()
 
 
 def main():
