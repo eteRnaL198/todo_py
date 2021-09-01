@@ -7,12 +7,12 @@ class App:
         self.master.geometry('400x300')
 
         self.tasks = ['foo', 'bar', 'hoge']
-        self.input_area = InputArea(self.master, self.tasks, self.reRenderTaskList)
+        self.input_area = InputArea(self.master, self.tasks, self._reRenderTaskList)
         self.input_area.pack()
         self.task_list = TaskList(self.master, self.tasks)
         self.task_list.pack()
 
-    def reRenderTaskList(self):
+    def _reRenderTaskList(self):
         self.task_list.destroy()
         self.task_list = TaskList(self.master, self.tasks)
         self.task_list.pack()
@@ -38,12 +38,15 @@ class InputArea(tk.Frame):
         self.entry = tk.Entry(self)
         self.entry.pack(side='left')
 
-        self.add_btn = tk.Button(self, text='追加', command=self._add_task)
+        self.add_btn = tk.Button(self, text='追加', command=self._update_task)
         self.add_btn.pack(side='left')
 
-    def _add_task(self):
+    def _update_task(self):
         self.tasks.append(self.entry.get())
         self.reRender()
+        self.entry.delete(0, tk.END)
+
+    
 
 class TaskList(tk.Frame):
     def __init__(self, master, tasks):
