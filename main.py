@@ -14,6 +14,7 @@ class App:
 
     def reRenderTaskList(self):
         self.task_list.destroy()
+        self.task_list = TaskList(self.master, self.tasks)
         self.task_list.pack()
 
     def mainloop(self):
@@ -43,8 +44,6 @@ class InputArea(tk.Frame):
     def _add_task(self):
         self.tasks.append(self.entry.get())
         self.reRender()
-        print(self.tasks)
-        # print('add', self.entry.get())
 
 class TaskList(tk.Frame):
     def __init__(self, master, tasks):
