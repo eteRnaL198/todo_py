@@ -46,8 +46,6 @@ class InputArea(tk.Frame):
         self.reRender()
         self.entry.delete(0, tk.END)
 
-    
-
 class TaskList(tk.Frame):
     def __init__(self, master, tasks):
         super(TaskList, self).__init__(master)
