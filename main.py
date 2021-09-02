@@ -41,7 +41,7 @@ class Tasks(tk.Frame):
         self.tasks = []
 
     def add_task(self, newText):
-        # tasks → [{btn:tk.CheckButton, text:string val:boolean}, {..}]
+        # tasks → [{btn:tk.CheckButton, text:string, val:boolean}, {..}]
         self.is_checked = tk.BooleanVar()
         self.text = tk.StringVar()
         self.text.set(newText)
