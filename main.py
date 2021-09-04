@@ -51,13 +51,14 @@ class Tasks(tk.Frame):
         self.tasks[len(self.tasks)-1]["btn"].pack()
 
     def remove_task(self):
-        i=0
+        new_tasks = []
         for task in self.tasks:
-            if task['val'].get():
-                task['btn'].destroy()
-                self.tasks.pop(i)
+            if task['val'].get() != True:
+                new_tasks.append(task)
             else:
-                i += 1
+                task['btn'].destroy()
+
+        self.tasks = new_tasks
 
             
 def main():
