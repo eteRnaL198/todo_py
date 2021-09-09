@@ -28,12 +28,23 @@ class InputArea(tk.Frame):
         self.add_btn.pack(side='left', padx=8)
 
         self.rem_btn = tk.Button(self, text='削除', command=tasks.remove_task)
-        self.rem_btn.pack(side='left')
+        self.rem_btn.pack(side='left', padx=8)
+
+        self.rew_btn = tk.Button(self, text='上書き', command=lambda: self._rewrite_task(tasks))
+        self.rew_btn.pack(side='left')
 
     def _update_task(self, tasks):
         if self.entry.get():
             tasks.add_task(self.entry.get())
             self.entry.delete(0, tk.END)
+
+    def _rewrite_task(self, tasks):
+        if self.entry.get():
+            for task in tasks.tasks:
+                if task['val'].get():
+                    tasks.text.set(self.entry.get())
+
+        self.entry.delete(0, tk.END)
 
 class Tasks(tk.Frame):
     def __init__(self, master):
@@ -59,7 +70,6 @@ class Tasks(tk.Frame):
                 task['btn'].destroy()
 
         self.tasks = new_tasks
-
             
 def main():
     app = App()
